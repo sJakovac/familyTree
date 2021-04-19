@@ -1,5 +1,5 @@
 ## Information
-Solution to problem posted in [a relative link](Test-Stjepan.pdf)
+Solution to problem posted in [problem pdf-file](Test-Stjepan.pdf)
 
 ## Tests
 Testing components and solution itself is done running following command.
