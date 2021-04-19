@@ -12,6 +12,7 @@ $ mvn test
 Running a program with example from exercise:
 
 ```
+$ mvn compile
 $ mvn exec:java
 ```
 shoud produce this output:https://github.com/sJakovac/familyTree
@@ -30,5 +31,6 @@ Luka
 Runnig with custom example:
 
 ```
+$ mvn compile
 $ mvn exec:java -Dexec.args="{path-to-file}"
 ```
