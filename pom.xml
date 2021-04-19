@@ -17,6 +17,9 @@
 <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
+    <exec.mainClass>familytree.Example</exec.mainClass>
+
+    <exec.args>&quot;examples/example0.txt&quot;</exec.args>
 </properties>
 
 </project>
