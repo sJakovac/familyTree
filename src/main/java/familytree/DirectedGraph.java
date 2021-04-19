@@ -14,7 +14,7 @@ public class DirectedGraph<T> {
 	private Map<T,List<T>> adjLists;
 	
 	public DirectedGraph() {
-		adjLists = new LinkedHashMap<T, List<T>>();
+		adjLists = new HashMap<T, List<T>>();
 	}
 	
 	public List<T> getNeighbours(T element) {
@@ -51,40 +51,33 @@ public class DirectedGraph<T> {
 	
 	private enum State {UNVISITED, VISITED, CURRENTLY_VIEWED}
 	public boolean hasCycle() {
-		Stack<T> dfsStack = new Stack<T>();
-		
 		Map<T,State> status = new HashMap<T, State>();
 		for (T v : adjLists.keySet()) {
 			status.put(v, State.UNVISITED);
 		}
 		
 		for (T v : status.keySet()) {
-			dfsStack.removeAllElements();
-			dfsStack.push(v);
-			status.put(v, State.CURRENTLY_VIEWED);
-			if (subTreeHasCycle(dfsStack, status)) return true;
+			if (status.get(v) != State.VISITED && subTreeHasCycle(v, status)) {
+			    return true;
+            }
 		}
 		
 		return false;
 	}
 	
-	private boolean subTreeHasCycle(Stack<T> stack, Map<T, State> status) {
-		T top = stack.peek();
-		
-		for (T child : adjLists.get(top)) {
+	private boolean subTreeHasCycle(T subTreeRoot, Map<T, State> status) {
+        status.put(subTreeRoot, State.CURRENTLY_VIEWED);
+
+		for (T child : adjLists.get(subTreeRoot)) {
 			State childStatus = status.get(child);
 			if (childStatus == State.CURRENTLY_VIEWED) {
 				return true;
-			}
-			else if (childStatus == State.UNVISITED) {
-				stack.push(child);
-				status.put(child, State.CURRENTLY_VIEWED);
-				if (subTreeHasCycle(stack, status)) return true;
+			} else if (childStatus == State.UNVISITED) {
+				if (subTreeHasCycle(child, status)) return true;
 			}
 		}
 		
-		status.put(top, State.VISITED);
-		stack.pop();
+		status.put(subTreeRoot, State.VISITED);
 		return false;
 	}
 }
