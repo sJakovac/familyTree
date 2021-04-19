@@ -15,7 +15,7 @@ Running a program with example from exercise:
 $ mvn compile
 $ mvn exec:java
 ```
-shoud produce this output:https://github.com/sJakovac/familyTree
+shoud produce this output:
 
 
 ```
